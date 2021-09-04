@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require('cors');
 const express = require("express");
 const app = express();
 
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 /* Enable CORS while testing */
+app.use(cors());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
