@@ -9,7 +9,7 @@ router.get("/:num", async (req, res) => {
       /* Maximum limit is 100 */
       let product = await db.Product.find()
         .limit(numberOfItems)
-        .select({ title: 1, price: 1 });
+        .select({ title: 1, price: 1, coverImage: 1 });
       res.json(product);
     } else {
       throw new Error("Invalid limit specifed!");
