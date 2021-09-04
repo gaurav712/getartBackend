@@ -48,4 +48,24 @@ router.post("/add", async (req, res) => {
   }
 });
 
+/* To search for products */
+router.get("/search/:query", async (req, res) => {
+  try {
+    db.Product.find(
+      { title: { $regex: req.params.query, $options: "ims" } },
+      "title price coverImage",
+      (err, data) => {
+        if (err) {
+          res.status(400).json(err);
+        } else {
+          res.json(data);
+          console.log(data);
+        }
+      }
+    );
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
