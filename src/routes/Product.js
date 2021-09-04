@@ -9,7 +9,7 @@ router.get("/:num", async (req, res) => {
       /* Maximum limit is 100 */
       let product = await db.Product.find()
         .limit(numberOfItems)
-        .select({ title: 1, price: 1 });
+        .select({ title: 1, price: 1, coverImage: 1 });
       res.json(product);
     } else {
       throw new Error("Invalid limit specifed!");
@@ -43,6 +43,26 @@ router.post("/add", async (req, res) => {
   try {
     await newProduct.save();
     res.json("Product Added!");
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+/* To search for products */
+router.get("/search/:query", async (req, res) => {
+  try {
+    db.Product.find(
+      { title: { $regex: req.params.query, $options: "ims" } },
+      "title price coverImage",
+      (err, data) => {
+        if (err) {
+          res.status(400).json(err);
+        } else {
+          res.json(data);
+          console.log(data);
+        }
+      }
+    );
   } catch (err) {
     res.status(400).json(err);
   }

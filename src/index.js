@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require('cors');
 const express = require("express");
 const app = express();
 
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 /* Enable CORS while testing */
+app.use(cors());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -24,6 +26,7 @@ app.use(function (req, res, next) {
 /* Routes */
 app.use("/products", require("./routes/Product"));
 app.use("/users", require("./routes/User"));
+app.use("/cart", require("./routes/Cart"));
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`Example app listening at ${port}`);
