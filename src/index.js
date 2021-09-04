@@ -26,6 +26,7 @@ app.use(function (req, res, next) {
 /* Routes */
 app.use("/products", require("./routes/Product"));
 app.use("/users", require("./routes/User"));
+app.use("/cart", require("./routes/Cart"));
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`Example app listening at ${port}`);

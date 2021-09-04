@@ -15,3 +15,4 @@ mongoose
 
 module.exports.Product = require("./Product");
 module.exports.User = require("./User");
+module.exports.Cart = require("./Cart");
