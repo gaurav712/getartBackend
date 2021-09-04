@@ -4,7 +4,12 @@ const productSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    email: { type: String, required: true },
+    email: {
+      type: String,
+      /* regex to validate the email address provided */
+      match:
+        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+    },
     password: { type: String, required: true },
   },
   {
