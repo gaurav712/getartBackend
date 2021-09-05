@@ -6,8 +6,8 @@ const productSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     description: { type: String, required: true },
     coverImage: { type: String, required: true },
-    seoTitle: { type: String, required: false },
-    seoDescription: { type: String, required: false },
+    seoTitle: { type: String, required: true },
+    seoDescription: { type: String, required: true },
   },
   {
     timestamps: true,
